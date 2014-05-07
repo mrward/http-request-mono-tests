@@ -15,7 +15,7 @@ namespace HttpRequestMono.Tests
 			var request = WebRequest.Create(url);
 			var systemProxy = WebRequest.GetSystemWebProxy ();
 			request.Proxy = systemProxy;
-			request.Proxy.Credentials = new NetworkCredential ();
+			request.Proxy.Credentials = CredentialCache.DefaultCredentials;
 
 			WebException webEx = null;
 			try {
@@ -41,7 +41,7 @@ namespace HttpRequestMono.Tests
 			var request = WebRequest.Create(url) as HttpWebRequest;
 			var systemProxy = WebRequest.GetSystemWebProxy ();
 			request.Proxy = systemProxy;
-			request.Proxy.Credentials = new NetworkCredential ();
+			request.Proxy.Credentials = CredentialCache.DefaultCredentials;
 
 			WebException webEx = null;
 			try {
