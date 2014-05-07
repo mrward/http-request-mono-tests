@@ -10,9 +10,12 @@ namespace HttpRequestMono.Tests
 		[Test]
 		public void HttpRequestThroughProxy ()
 		{
-			string url = "http://www.nuet.org/api/v2";
+			string url = "http://www.nuget.org/api/v2";
 
 			var request = WebRequest.Create(url);
+			var systemProxy = WebRequest.GetSystemWebProxy ();
+			request.Proxy = systemProxy;
+			request.Proxy.Credentials = new NetworkCredential ();
 
 			WebException webEx = null;
 			try {
@@ -33,9 +36,12 @@ namespace HttpRequestMono.Tests
 		/// </summary>
 		public void HttpsRequestThroughProxy ()
 		{
-			string url = "https://www.nuet.org/api/v2";
+			string url = "https://www.nuget.org/api/v2";
 
-			var request = WebRequest.Create(url);
+			var request = WebRequest.Create(url) as HttpWebRequest;
+			var systemProxy = WebRequest.GetSystemWebProxy ();
+			request.Proxy = systemProxy;
+			request.Proxy.Credentials = new NetworkCredential ();
 
 			WebException webEx = null;
 			try {
